@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靈應壇｜業務小編應徵表單</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F3ED;
+      --card: #FFFFFF;
+      --black: #111111;
+      --gold: #C8973A;
+      --gold-lt: #E8C06A;
+      --gold-pale: #F5E6C0;
+      --gray: #888;
+      --gray-lt: #DDD8D0;
+      --text: #2C2018;
+      --text-sm: #666;
+      --danger: #C0392B;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 48px 16px 80px;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      border: 1px solid rgba(200,151,58,0.4);
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .header-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-size: 13px;
+      color: var(--text-sm);
+      line-height: 1.8;
+    }
+
+    /* Gold rule */
+    .gold-rule {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 28px 0;
+      opacity: 0.5;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 36px;
+    }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-lt);
+    }
+
+    /* Field */
+    .field {
+      margin-bottom: 24px;
+    }
+    .field-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .required {
+      color: var(--danger);
+      font-size: 12px;
+    }
+    .field-hint {
+      font-size: 12px;
+      color: var(--text-sm);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      background: #fff;
+      border: 1px solid var(--gray-lt);
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--gold);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.8;
+    }
+
+    /* Radio / Checkbox group */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .options.inline {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .opt-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .opt-item input[type="radio"],
+    .opt-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .opt-label {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .opt-label small {
+      display: block;
+      font-size: 12px;
+      color: var(--text-sm);
+      margin-top: 2px;
+    }
+
+    /* Scale */
+    .scale-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .scale-wrap input[type="range"] {
+      flex: 1;
+      accent-color: var(--gold);
+      height: 4px;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-sm);
+      margin-top: 6px;
+    }
+    .scale-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 40px;
+      text-align: center;
+    }
+
+    /* Notice box */
+    .notice {
+      background: #FFF8EE;
+      border-left: 3px solid var(--gold);
+      padding: 14px 16px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 24px;
+    }
+    .notice p {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .notice strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* Submit */
+    .submit-area {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .submit-btn {
+      display: inline-block;
+      background: var(--black);
+      color: var(--gold-lt);
+      font-family: 'Noto Serif TC', serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      padding: 16px 56px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .submit-btn:hover { background: #2C2018; }
+    .submit-btn:active { transform: scale(0.98); }
+
+    /* Thank you */
+    .thankyou {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .thankyou .ty-icon { font-size: 48px; margin-bottom: 20px; }
+    .thankyou h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 24px;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    .thankyou p {
+      font-size: 14px;
+      color: var(--text-sm);
+      line-height: 1.9;
+    }
+
+    .error-msg {
+      font-size: 12px;
+      color: var(--danger);
+      margin-top: 6px;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error textarea,
+    .field.has-error select {
+      border-color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="header-tag">APPLICATION FORM</span>
+    <h1 class="header-title">業務小編應徵表單</h1>
+    <p class="header-sub">
+      請誠實填寫以下問題，沒有標準答案<br>
+      我們會根據填寫內容與你進一步聯繫
+    </p>
+  </div>
+
+  <div class="gold-rule"></div>
+
+  <form id="appForm" name="hiring">
+
+    <!-- SECTION 1：基本資料 -->
+    <div class="section">
+      <div class="section-label">基本資料</div>
+
+      <div class="field" id="f-name">
+        <div class="field-label">姓名（或稱呼）<span class="required">*</span></div>
+        <input type="text" name="name" placeholder="你希望我們怎麼稱呼你">
+        <div class="error-msg">請填寫姓名</div>
+      </div>
+
+      <div class="field" id="f-line">
+        <div class="field-label">LINE ID<span class="required">*</span></div>
+        <input type="text" name="line_id" placeholder="例如：kevin_123">
+        <div class="error-msg">請填寫 LINE ID</div>
+      </div>
+
+      <div class="field" id="f-phone">
+        <div class="field-label">聯絡電話<span class="required">*</span></div>
+        <input type="tel" name="phone" placeholder="09XX-XXX-XXX">
+        <div class="error-msg">請填寫聯絡電話</div>
+      </div>
+
+      <div class="field" id="f-email">
+        <div class="field-label">Email<span class="required">*</span></div>
+        <input type="email" name="email" placeholder="your@email.com">
+        <div class="error-msg">請填寫 Email</div>
+      </div>
+
+      <div class="field" id="f-age">
+        <div class="field-label">年齡區間<span class="required">*</span></div>
+        <div class="options inline">
+          <label class="opt-item"><input type="radio" name="age" value="20以下"><span class="opt-label">20 以下</span></label>
+          <label class="opt-item"><input type="radio" name="age" value="21-25"><span class="opt-label">21–25</span></label>
+          <label class="opt-item"><input type="radio" name="age" value="26-30"><span class="opt-label">26–30</span></label>
+          <label class="opt-item"><input type="radio" name="age" value="31-35"><span class="opt-label">31–35</span></label>
+          <label class="opt-item"><input type="radio" name="age" value="36以上"><span class="opt-label">36 以上</span></label>
+        </div>
+        <div class="error-msg">請選擇年齡區間</div>
+      </div>
+
+      <div class="field" id="f-avail">
+        <div class="field-label">目前狀態<span class="required">*</span></div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="avail" value="全職求職中"><span class="opt-label">全職求職中</span></label>
+          <label class="opt-item"><input type="radio" name="avail" value="在職想轉換"><span class="opt-label">在職，想轉換跑道</span></label>
+          <label class="opt-item"><input type="radio" name="avail" value="兼職或接案"><span class="opt-label">希望兼職 / 接案形式</span></label>
+          <label class="opt-item"><input type="radio" name="avail" value="其他"><span class="opt-label">其他</span></label>
+        </div>
+        <div class="error-msg">請選擇目前狀態</div>
+      </div>
+    </div>
+
+    <div class="gold-rule"></div>
+
+    <!-- SECTION 2：工作背景 -->
+    <div class="section">
+      <div class="section-label">工作背景</div>
+
+      <div class="field" id="f-exp">
+        <div class="field-label">過去有沒有業務、客服或行政相關經驗？<span class="required">*</span></div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="exp" value="有業務經驗"><span class="opt-label">有，業務 / 銷售相關</span></label>
+          <label class="opt-item"><input type="radio" name="exp" value="有客服經驗"><span class="opt-label">有，客服 / 客戶溝通相關</span></label>
+          <label class="opt-item"><input type="radio" name="exp" value="有行政經驗"><span class="opt-label">有，行政 / 文書相關</span></label>
+          <label class="opt-item"><input type="radio" name="exp" value="都有一些"><span class="opt-label">以上都有一些</span></label>
+          <label class="opt-item"><input type="radio" name="exp" value="沒有相關經驗"><span class="opt-label">目前沒有相關經驗</span></label>
+        </div>
+        <div class="error-msg">請選擇工作背景</div>
+      </div>
+
+      <div class="field" id="f-exp-detail">
+        <div class="field-label">簡單說說你做過的工作或擅長的事</div>
+        <div class="field-hint">不需要正式履歷格式，說人話就好</div>
+        <textarea name="exp_detail" placeholder="例如：做過保險業務兩年、曾在飲料店擔任班長、擅長處理客訴…"></textarea>
+      </div>
+    </div>
+
+    <div class="gold-rule"></div>
+
+    <!-- SECTION 3：性格與態度 -->
+    <div class="section">
+      <div class="section-label">性格與態度</div>
+
+      <div class="field" id="f-client">
+        <div class="field-label">工作中如果遇到情緒不穩定、難溝通的客人，你通常會怎麼應對？<span class="required">*</span></div>
+        <div class="field-hint">這份工作可能會接觸各式各樣的人，希望了解你的處理方式</div>
+        <textarea name="client_handling" placeholder="請描述你的做法或過去的經驗…"></textarea>
+        <div class="error-msg">請填寫此欄位</div>
+      </div>
+
+      <div class="field" id="f-remind">
+        <div class="field-label">老師行程很多，需要主動追蹤與提醒。你對這類「催促長輩或主管」的工作感覺如何？<span class="required">*</span></div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="remind" value="完全沒問題"><span class="opt-label">沒問題，這是工作職責<small>會主動追蹤、溫柔但確實</small></span></label>
+          <label class="opt-item"><input type="radio" name="remind" value="有點不自在但可以做"><span class="opt-label">有點不自在，但可以克服</span></label>
+          <label class="opt-item"><input type="radio" name="remind" value="不太適應"><span class="opt-label">老實說有點難開口</span></label>
+        </div>
+        <div class="error-msg">請選擇一項</div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">你覺得自己做事的細心程度？</div>
+        <div style="display:flex; align-items:center; gap:16px; margin-top:8px;">
+          <span class="scale-val" id="carefulVal">5</span>
+          <div style="flex:1;">
+            <input type="range" name="careful" min="1" max="10" value="5"
+              oninput="document.getElementById('carefulVal').textContent=this.value">
+            <div class="scale-labels"><span>還好</span><span>極度細心</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gold-rule"></div>
+
+    <!-- SECTION 4：對這份工作的認識 -->
+    <div class="section">
+      <div class="section-label">對這份工作的認識</div>
+
+      <div class="notice">
+        <p>
+          這份工作的性質比較特別：<br>
+          <strong>不是單純的行政</strong>，也<strong>不是純粹的療癒陪伴</strong>。<br>
+          你會接觸到需要幫忙的客人、協助收單，也會在道教儀式的環境中工作。<br>
+          請誠實回答以下問題，沒有對錯。
+        </p>
+      </div>
+
+      <div class="field" id="f-incense">
+        <div class="field-label">你能接受在工作中拿香、參與道教科儀環境嗎？<span class="required">*</span></div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="incense" value="完全沒問題"><span class="opt-label">完全沒問題，不排斥<small>甚至有興趣</small></span></label>
+          <label class="opt-item"><input type="radio" name="incense" value="可以接受"><span class="opt-label">可以接受，不會有障礙</span></label>
+          <label class="opt-item"><input type="radio" name="incense" value="有些顧慮"><span class="opt-label">有些顧慮，但想多了解</span></label>
+          <label class="opt-item"><input type="radio" name="incense" value="不太能接受"><span class="opt-label">老實說不太能接受</span></label>
+        </div>
+        <div class="error-msg">請選擇一項</div>
+      </div>
+
+      <div class="field" id="f-kpi">
+        <div class="field-label">這份工作需要透過對話引導客人諮詢或報名法會，老師會持續有客人進來，你的角色是協助收單與引導。你對這樣的安排感受如何？<span class="required">*</span></div>
+        <div class="field-hint">不需要主動開發，但需要在對話中讓客人願意進一步行動</div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="kpi" value="很適合我"><span class="opt-label">很適合我，喜歡這種引導式的溝通<small>有目標感又不強迫推銷</small></span></label>
+          <label class="opt-item"><input type="radio" name="kpi" value="可以接受"><span class="opt-label">可以接受，覺得自己做得到</span></label>
+          <label class="opt-item"><input type="radio" name="kpi" value="有點壓力但願意嘗試"><span class="opt-label">有點壓力，但願意學習和嘗試</span></label>
+          <label class="opt-item"><input type="radio" name="kpi" value="不太適合"><span class="opt-label">老實說這不太是我擅長的</span></label>
+        </div>
+        <div class="error-msg">請選擇一項</div>
+      </div>
+
+      <div class="field" id="f-ritual">
+        <div class="field-label">你有沒有聽過或接觸過「補財庫、補運、補姻緣」這類儀式服務？你的看法是？<span class="required">*</span></div>
+        <div class="field-hint">說真心話就好，我們想了解你的認知起點</div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="ritual" value="有接觸且認同"><span class="opt-label">有接觸過，認同這類服務的價值<small>相信有其作用</small></span></label>
+          <label class="opt-item"><input type="radio" name="ritual" value="有聽過但不了解"><span class="opt-label">有聽過，但不太了解，想多學習</span></label>
+          <label class="opt-item"><input type="radio" name="ritual" value="沒接觸但開放"><span class="opt-label">沒什麼接觸，但保持開放態度</span></label>
+          <label class="opt-item"><input type="radio" name="ritual" value="有疑慮"><span class="opt-label">老實說有些疑慮，但願意了解</span></label>
+          <label class="opt-item"><input type="radio" name="ritual" value="不認同"><span class="opt-label">個人不太認同這類服務</span></label>
+        </div>
+        <div class="error-msg">請選擇一項</div>
+      </div>
+
+      <div class="field" id="f-guide">
+        <div class="field-label">客人有時候需要多一點時間才能做決定，或是有很多疑問要反覆確認。你能耐心引導嗎？<span class="required">*</span></div>
+        <div class="options">
+          <label class="opt-item"><input type="radio" name="guide" value="完全可以"><span class="opt-label">完全可以，我本來就有耐心<small>慢慢引導是我擅長的</small></span></label>
+          <label class="opt-item"><input type="radio" name="guide" value="大部分可以"><span class="opt-label">大部分可以，偶爾會需要調整心態</span></label>
+          <label class="opt-item"><input type="radio" name="guide" value="需要練習"><span class="opt-label">需要練習，但我願意努力</span></label>
+          <label class="opt-item"><input type="radio" name="guide" value="比較沒耐心"><span class="opt-label">老實說我比較沒有耐心</span></label>
+        </div>
+        <div class="error-msg">請選擇一項</div>
+      </div>
+
+      <div class="field" id="f-why">
+        <div class="field-label">你為什麼想應徵這個職位？<span class="required">*</span></div>
+        <div class="field-hint">不需要寫得很漂亮，說真心話就好</div>
+        <textarea name="why" placeholder="是因為對命理有興趣？想學習？喜歡這類工作氛圍？還是別的原因…"></textarea>
+        <div class="error-msg">請填寫此欄位</div>
+      </div>
+    </div>
+
+    <div class="gold-rule"></div>
+
+    <!-- SECTION 5：加分題 -->
+    <div class="section">
+      <div class="section-label">加分題（選填）</div>
+
+      <div class="field">
+        <div class="field-label">你對命理、道教、塔羅或靈性相關有接觸過嗎？</div>
+        <textarea name="metaphysics" placeholder="有的話說說你的接觸經驗，沒有也完全沒關係…"></textarea>
+      </div>
+
+      <div class="field">
+        <div class="field-label">有什麼想問我們的，或想補充說明的？</div>
+        <textarea name="extra" placeholder="自由發揮…"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <button type="submit" class="submit-btn">送出應徵資料</button>
+    </div>
+
+  </form>
+
+  <!-- Thank you -->
+  <div class="thankyou" id="thankyou">
+    <div class="ty-icon">🏮</div>
+    <h2>謝謝你的填寫</h2>
+    <p>
+      我們已收到你的資料<br>
+      若有興趣進一步聊聊，會透過私訊與你聯繫<br><br>
+      <span style="color:#C8973A;">靈應壇</span>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_DsRggJs9RitEt4t4fZu2NUM98aQNNulE2eUd-8SkwrycqvuztQY6GOdjwEPoOLbg/exec';
+
+  const form = document.getElementById('appForm');
+  const thankyou = document.getElementById('thankyou');
+  const submitBtn = form.querySelector('.submit-btn');
+
+  const required = [
+    { id: 'f-name',    name: 'name',            type: 'text' },
+    { id: 'f-line',    name: 'line_id',         type: 'text' },
+    { id: 'f-phone',   name: 'phone',           type: 'text' },
+    { id: 'f-email',   name: 'email',           type: 'text' },
+    { id: 'f-age',     name: 'age',             type: 'radio' },
+    { id: 'f-avail',   name: 'avail',           type: 'radio' },
+    { id: 'f-exp',     name: 'exp',             type: 'radio' },
+    { id: 'f-client',  name: 'client_handling', type: 'textarea' },
+    { id: 'f-remind',  name: 'remind',          type: 'radio' },
+    { id: 'f-incense', name: 'incense',         type: 'radio' },
+    { id: 'f-kpi',     name: 'kpi',             type: 'radio' },
+    { id: 'f-ritual',  name: 'ritual',          type: 'radio' },
+    { id: 'f-guide',   name: 'guide',           type: 'radio' },
+    { id: 'f-why',     name: 'why',             type: 'textarea' },
+  ];
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    required.forEach(f => {
+      const el = document.getElementById(f.id);
+      const errEl = el.querySelector('.error-msg');
+      let ok = false;
+
+      if (f.type === 'radio') {
+        ok = !!form.querySelector(`input[name="${f.name}"]:checked`);
+      } else {
+        const input = form.querySelector(`[name="${f.name}"]`);
+        ok = input && input.value.trim() !== '';
+      }
+
+      if (!ok) {
+        el.classList.add('has-error');
+        if (errEl) errEl.style.display = 'block';
+        valid = false;
+      } else {
+        el.classList.remove('has-error');
+        if (errEl) errEl.style.display = 'none';
+      }
+    });
+
+    if (!valid) {
+      const first = document.querySelector('.has-error');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // 收集所有欄位資料
+    const data = {};
+    const fd = new FormData(form);
+
+    // 文字欄位
+    form.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"], textarea').forEach(el => {
+      if (el.name) data[el.name] = el.value.trim();
+    });
+
+    // Radio
+    form.querySelectorAll('input[type="radio"]:checked').forEach(el => {
+      data[el.name] = el.value;
+    });
+
+    // Range
+    form.querySelectorAll('input[type="range"]').forEach(el => {
+      if (el.name) data[el.name] = el.value;
+    });
+
+    // 加上送出時間
+    data['送出時間'] = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+
+    // 送出中狀態
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送出中…';
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      // 成功：顯示感謝頁
+      form.style.display = 'none';
+      thankyou.style.display = 'block';
+
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '送出應徵資料';
+      alert('送出失敗，請稍後再試');
+    }
+  });
+
+  // 清除錯誤提示
+  form.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', function() {
+      const field = this.closest('.field');
+      if (field) {
+        field.classList.remove('has-error');
+        const err = field.querySelector('.error-msg');
+        if (err) err.style.display = 'none';
+      }
+    });
+    el.addEventListener('change', function() {
+      const field = this.closest('.field');
+      if (field) {
+        field.classList.remove('has-error');
+        const err = field.querySelector('.error-msg');
+        if (err) err.style.display = 'none';
+      }
+    });
+  });
+</script>
+</body>
+</html>
